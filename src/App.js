@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { shallowEqual, useSelector } from 'react-redux';
+import { Center, VStack} from '@chakra-ui/react';
+import ButtonComponent from './components/ButtonComponent';
 
 function App() {
+  const color = useSelector(state => state.color, shallowEqual);
+  
+  const colors = ["red", "blue", "yellow", "green", "pink"]
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Center display="flex" h="100vh" color="white">
+      <Center bg={color} w="400px" h="400px" p={4} color="white">
+        {color}
+      </Center>
+      <VStack spacing={4} align="stretch" ml={8}>
+        <ButtonComponent colors={colors} />
+      </VStack>
+    </Center>
   );
 }
 
